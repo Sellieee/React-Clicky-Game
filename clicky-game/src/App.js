@@ -39,31 +39,26 @@ class App extends Conponent {
       this.setState({ clickMessage });
       this.setState({ correctGuesses });
       this.setState({ matches });
+
+      // If character has not been selected before but user hasn't finished game
+    } else if (correctGuesses < 11) {
+      clickedMatch[0].clicked = true;
+      correctGuesses++;
+      clickMessage = "Sweet! This one hasn't been clicked yet!"
+
+      // If user beats personal record
+      if (correctGuesses > maxScore) {
+        maxScore = correctGuesses;
+        this.setState({ maxScore });
+
+      } else {
+        clickedMatch[0].clicked = true;
+        correctGuesses = 0;
+      }
     }
 
-    // If character has not been selected before
   }
 }
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
 
 export default App;
