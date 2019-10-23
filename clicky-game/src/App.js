@@ -10,6 +10,41 @@ let correctGuesses = 0;
 let maxScore = 0;
 let clickMessage = "Click on the character to earn a point. Lose when you click on the same character twice!"
 
+class App extends Conponent {
+
+  // Setting the state
+  state = {
+    matches,
+    correctGuesses,
+    maxScore,
+    clickMessage
+  };
+
+  setClicked = id => {
+    const matches = this.state.matches;
+    const clickedMatch = matches.filter(match => match.id === id);
+
+    // Game over if user has already selected the character in this game
+    if (clickedMatch[0].clicked) {
+      console.log("Correct Guesses:" + correctGuesses);
+      console.log("Maximum Score:" + maxScore);
+
+      correctGuesses = 0;
+      clickMessage = "Hmm.. You've already clicked this character!"
+
+      for (var i = 0; i < matches.length; i++) {
+        matches[i].clicked = false;
+      };
+
+      this.setState({ clickMessage });
+      this.setState({ correctGuesses });
+      this.setState({ matches });
+    }
+
+    // If character has not been selected before
+  }
+}
+
 function App() {
   return (
     <div className="App">
