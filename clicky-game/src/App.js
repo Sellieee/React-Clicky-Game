@@ -1,6 +1,14 @@
 import React from 'react';
 import logo from './logo.svg';
 import './App.css';
+import Card from "./components/Card";
+import Wrapper from "./components/Wrapper";
+import Header from "./components/Header";
+import cards from "./cards.json";
+
+let correctGuesses = 0;
+let maxScore = 0;
+let clickMessage = "Click on the character to earn a point. Lose when you click on the same character twice!"
 
 function App() {
   return (
