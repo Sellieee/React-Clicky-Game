@@ -1,0 +1,62 @@
+[
+   {
+      "id": 1,
+      "image": "./images/yoda.jpg",
+      "clicked": false
+   },
+   {
+      "id": 2,
+      "image": "./images/anakin.jpg",
+      "clicked": false
+   },
+   {
+      "id": 3,
+      "image": "./images/bb8.jpg",
+      "clicked": false
+   },
+   {
+      "id": 4,
+      "image": "./images/c3po.jpg",
+      "clicked": false
+   },
+   {
+      "id": 5,
+      "image": "./images/chewbacca.jpg",
+      "clicked": false
+   },
+   {
+      "id": 6,
+      "image": "./images/darthvader.jpg",
+      "clicked": false
+   },
+   {
+      "id": 7,
+      "image": "./images/kylo.jpg",
+      "clicked": false
+   },
+   {
+      "id": 8,
+      "image": "./images/obiwan.jpg",
+      "clicked": false
+   },
+   {
+      "id": 9,
+      "image": "./images/ren.jpg",
+      "clicked": false
+   },
+   {
+      "id": 10,
+      "image": "./images/porg.jpg",
+      "clicked": false
+   },
+   {
+      "id": 11,
+      "image": "./images/stormtrooper.jpg",
+      "clicked": false
+   },
+   {
+      "id": 12,
+      "image": "./images/r2d2.jpg",
+      "clicked": false
+   }
+]
