@@ -54,7 +54,35 @@ class App extends Conponent {
       } else {
         clickedMatch[0].clicked = true;
         correctGuesses = 0;
+
+        // Restart the game 
+        clickMessage = "Congrats! You're through to the next round!";
+        maxScore = 12;
+        this.setState({ maxScore });
+
+        // Set all cards back to unclicked
+        for (let i = 0; i < matches.length; i++) {
+          matches[i].clicked = false;
+        }
+
+        this.setState({ matches });
+        this.setState({ correctGuesses });
+        this.setState({ clickMessage });
       }
+    };
+
+    render() {
+      return (
+        <Wrapper>
+          <title>Star Wars Clicker Game</title>
+
+          <h3 className="scores">
+            {this.state.clickMessage}
+          </h3>
+
+          <h3 className="card-header">correctGuesses: {this.state.correctGuesses}</h3>
+        </Wrapper>
+      )
     }
 
   }
