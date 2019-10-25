@@ -90,7 +90,7 @@ class App extends Conponent {
         <div className="container">
           <div className="row">
             {this.state.matches.map(match => (
-              <MatchCard
+              <Card
                 setClicked={this.setClicked}
                 id={match.id}
                 key={match.id}
