@@ -60,33 +60,48 @@ class App extends Conponent {
         maxScore = 12;
         this.setState({ maxScore });
 
-        // Set all cards back to unclicked
-        for (let i = 0; i < matches.length; i++) {
-          matches[i].clicked = false;
-        }
-
-        this.setState({ matches });
-        this.setState({ correctGuesses });
-        this.setState({ clickMessage });
       }
-    };
+      // Set all cards back to unclicked
+      for (let i = 0; i < matches.length; i++) {
+        matches[i].clicked = false;
+      }
 
-    render() {
-      return (
-        <Wrapper>
-          <title>Star Wars Clicker Game</title>
-
-          <h3 className="scores">
-            {this.state.clickMessage}
-          </h3>
-
-          <h3 className="card-header">correctGuesses: {this.state.correctGuesses}</h3>
-        </Wrapper>
-      )
+      this.setState({ matches });
+      this.setState({ correctGuesses });
+      this.setState({ clickMessage });
     }
+  };
 
-  }
-}
+  render() {
+    return (
+      <Wrapper>
+        <title>Star Wars Clicker Game</title>
 
+        <h3 className="scores">
+          {this.state.clickMessage}
+        </h3>
+
+        <h3 className="card-header">
+          correctGuesses: {this.state.correctGuesses}
+          <br />
+          Personal Best: {this.state.maxScore}
+        </h3>
+
+        <div className="container">
+          <div className="row">
+            {this.state.matches.map(match => (
+              <MatchCard
+                setClicked={this.setClicked}
+                id={match.id}
+                key={match.id}
+                image={match.image}
+              />
+            ))}
+          </div>
+        </div>
+      </Wrapper>
+    );
+  };
+};
 
 export default App;
