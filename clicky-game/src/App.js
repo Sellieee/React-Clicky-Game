@@ -1,23 +1,22 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
 import Card from "./components/Card";
 import Wrapper from "./components/Wrapper";
 import Header from "./components/Header";
-import cards from "./cards.json";
+import Cards from "./cards.json";
 
 let correctGuesses = 0;
 let maxScore = 0;
 let clickMessage = "Click on the character to earn a point. Lose when you click on the same character twice!"
 
-class App extends Conponent {
+class App extends React.Component {
 
   // Setting the state
   state = {
-    matches,
-    correctGuesses,
-    maxScore,
-    clickMessage
+    matches: 0,
+    correctGuesses: 0,
+    maxScore: 0,
+    clickMessage: ""
   };
 
   setClicked = id => {
