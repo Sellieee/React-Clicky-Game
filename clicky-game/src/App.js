@@ -2,11 +2,21 @@ import React from 'react';
 import './App.css';
 import Card from "./components/Card";
 import Wrapper from "./components/Wrapper";
+import Header from "./components/Header";
 import cards from "./cards.json";
 
 let correctGuesses = 0;
 let maxScore = 0;
 let clickMessage = "Click on the character to earn a point. Lose when you click on the same character twice!"
+
+// Randomising images
+function shuffle(arr) {
+  for (let a = arr.length - 1; a > 0; a--) {
+    let b = Math.floor(Math.random() * (a + 1));
+    arr[a] = arr[b];
+  };
+  return arr
+}
 
 class App extends React.Component {
 
@@ -26,7 +36,6 @@ class App extends React.Component {
     if (clickedCard[0].clicked) {
       console.log("Correct Guesses:" + correctGuesses);
       console.log("Maximum Score:" + maxScore);
-
       correctGuesses = 0;
       clickMessage = "Hmm.. You've already clicked this character!"
 
@@ -41,6 +50,7 @@ class App extends React.Component {
       // If character has not been selected before but user hasn't finished game
     } else if (correctGuesses < 11) {
       clickedCard[0].clicked = true;
+      this.cardShuffle();
       correctGuesses++;
       clickMessage = "Sweet! This one hasn't been clicked yet!"
 
@@ -68,6 +78,10 @@ class App extends React.Component {
       this.setState({ correctGuesses });
       this.setState({ clickMessage });
     }
+  };
+
+  cardShuffle = () => {
+    this.setState({ cards: shuffle(cards) })
   };
 
   render() {
