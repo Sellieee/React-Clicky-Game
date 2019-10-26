@@ -2,8 +2,7 @@ import React from 'react';
 import './App.css';
 import Card from "./components/Card";
 import Wrapper from "./components/Wrapper";
-import Header from "./components/Header";
-import Cards from "./cards.json";
+import cards from "./cards.json";
 
 let correctGuesses = 0;
 let maxScore = 0;
@@ -13,35 +12,35 @@ class App extends React.Component {
 
   // Setting the state
   state = {
-    matches: 0,
+    cards: 0,
     correctGuesses: 0,
     maxScore: 0,
     clickMessage: ""
   };
 
   setClicked = id => {
-    const matches = this.state.matches;
-    const clickedMatch = matches.filter(match => match.id === id);
+    const cards = this.cards.cards;
+    const clickedCard = cards.filter(cards => cards.id === id);
 
     // Game over if user has already selected the character in this game
-    if (clickedMatch[0].clicked) {
+    if (clickedCard[0].clicked) {
       console.log("Correct Guesses:" + correctGuesses);
       console.log("Maximum Score:" + maxScore);
 
       correctGuesses = 0;
       clickMessage = "Hmm.. You've already clicked this character!"
 
-      for (var i = 0; i < matches.length; i++) {
-        matches[i].clicked = false;
+      for (var i = 0; i < cards.length; i++) {
+        cards[i].clicked = false;
       };
 
       this.setState({ clickMessage });
       this.setState({ correctGuesses });
-      this.setState({ matches });
+      this.setState({ cards });
 
       // If character has not been selected before but user hasn't finished game
     } else if (correctGuesses < 11) {
-      clickedMatch[0].clicked = true;
+      clickedCard[0].clicked = true;
       correctGuesses++;
       clickMessage = "Sweet! This one hasn't been clicked yet!"
 
@@ -51,7 +50,7 @@ class App extends React.Component {
         this.setState({ maxScore });
 
       } else {
-        clickedMatch[0].clicked = true;
+        clickedCard[0].clicked = true;
         correctGuesses = 0;
 
         // Restart the game 
@@ -61,11 +60,11 @@ class App extends React.Component {
 
       }
       // Set all cards back to unclicked
-      for (let i = 0; i < matches.length; i++) {
-        matches[i].clicked = false;
+      for (let i = 0; i < cards.length; i++) {
+        cards[i].clicked = false;
       }
 
-      this.setState({ matches });
+      this.setState({ cards });
       this.setState({ correctGuesses });
       this.setState({ clickMessage });
     }
@@ -88,12 +87,12 @@ class App extends React.Component {
 
         <div className="container">
           <div className="row">
-            {this.state.matches.map(match => (
+            {this.state.cards.map(cards => (
               <Card
                 setClicked={this.setClicked}
-                id={match.id}
-                key={match.id}
-                image={match.image}
+                id={cards.id}
+                key={cards.id}
+                image={cards.image}
               />
             ))}
           </div>
