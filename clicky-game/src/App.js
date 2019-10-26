@@ -2,7 +2,6 @@ import React from 'react';
 import './App.css';
 import Card from "./components/Card";
 import Wrapper from "./components/Wrapper";
-import Header from "./components/Header";
 import cards from "./cards.json";
 
 let correctGuesses = 0;
@@ -53,9 +52,23 @@ class App extends React.Component {
       } else {
         clickedCard[0].clicked = true;
         correctGuesses = 0;
+
+        // Restart the game 
+        clickMessage = "Congrats! You're through to the next round!";
+        maxScore = 12;
+        this.setState({ maxScore });
+
       }
+      // Set all cards back to unclicked
+      for (let i = 0; i < cards.length; i++) {
+        cards[i].clicked = false;
+      }
+
+      this.setState({ cards });
+      this.setState({ correctGuesses });
+      this.setState({ clickMessage });
     }
-  }
+  };
 
   render() {
     return (
@@ -87,6 +100,5 @@ class App extends React.Component {
     )
   }
 }
-
 
 export default App;
