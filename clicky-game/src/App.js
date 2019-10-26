@@ -1,5 +1,4 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
 import Card from "./components/Card";
 import Wrapper from "./components/Wrapper";
@@ -10,39 +9,39 @@ let correctGuesses = 0;
 let maxScore = 0;
 let clickMessage = "Click on the character to earn a point. Lose when you click on the same character twice!"
 
-class App extends Conponent {
+class App extends React.Component {
 
   // Setting the state
   state = {
-    matches,
+    cards,
     correctGuesses,
     maxScore,
     clickMessage
   };
 
   setClicked = id => {
-    const matches = this.state.matches;
-    const clickedMatch = matches.filter(match => match.id === id);
+    const cards = this.state.cards;
+    const clickedCard = cards.filter(match => match.id === id);
 
     // Game over if user has already selected the character in this game
-    if (clickedMatch[0].clicked) {
+    if (clickedCard[0].clicked) {
       console.log("Correct Guesses:" + correctGuesses);
       console.log("Maximum Score:" + maxScore);
 
       correctGuesses = 0;
       clickMessage = "Hmm.. You've already clicked this character!"
 
-      for (var i = 0; i < matches.length; i++) {
-        matches[i].clicked = false;
+      for (var i = 0; i < cards.length; i++) {
+        cards[i].clicked = false;
       };
 
       this.setState({ clickMessage });
       this.setState({ correctGuesses });
-      this.setState({ matches });
+      this.setState({ cards });
 
       // If character has not been selected before but user hasn't finished game
     } else if (correctGuesses < 11) {
-      clickedMatch[0].clicked = true;
+      clickedCard[0].clicked = true;
       correctGuesses++;
       clickMessage = "Sweet! This one hasn't been clicked yet!"
 
@@ -52,11 +51,40 @@ class App extends Conponent {
         this.setState({ maxScore });
 
       } else {
-        clickedMatch[0].clicked = true;
+        clickedCard[0].clicked = true;
         correctGuesses = 0;
       }
     }
+  }
 
+  render() {
+    return (
+      <Wrapper>
+        <Header>Star Wars Clicker Game </Header>
+
+        <h3 className="scores">
+          {this.state.clickMessage}
+        </h3>
+
+        <h3 className="scores card-header">
+          Personal best: {this.state.maxScore}
+        </h3>
+        <div className="container">
+          <div className="row">
+            {this.state.cards.map(match => (
+              <Card
+                setClicked={this.setClicked}
+                id={match.id}
+                key={match.id}
+                image={match.image}
+              />
+            ))}
+          </div>
+
+        </div>
+
+      </Wrapper>
+    )
   }
 }
 
